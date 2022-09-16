@@ -1,6 +1,4 @@
 // Basic Forms
-// http://localhost:3000/isolated/exercise/06.js
-
 import * as React from 'react'
 
 function UsernameForm({onSubmitUsername}) {
@@ -19,11 +17,25 @@ function UsernameForm({onSubmitUsername}) {
 
   // 🐨 make sure to associate the label to the input.
   // to do so, set the value of 'htmlFor' prop of the label to the id of input
+  const [userName, setUserName] = React.useState('Pol')
+
+  const handleSubmit = event => {
+    onSubmitUsername(userName)
+    event.preventDefault()
+  }
+  const onInputChange = event => {
+    setUserName(event.target.value.toLowerCase())
+  }
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
-        <label>Username:</label>
-        <input type="text" />
+        <label htmlFor="textInput">Username:</label>
+        <input
+          value={userName}
+          onChange={onInputChange}
+          type="text"
+          id="textInput"
+        />
       </div>
       <button type="submit">Submit</button>
     </form>
